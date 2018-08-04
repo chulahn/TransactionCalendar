@@ -13,8 +13,29 @@
     <style>
         
     </style>
+
+    <script id="customMonthCell.html" type="text/ng-template">
+        <div class="cal-month-day {{day.cssClass}}">
+    
+        <span
+            class="pull-right"
+            data-cal-date
+            ng-click="vm.calendarCtrl.dateClicked(day.date)"
+            ng-bind="day.label">
+        </span>
+    
+        <small style="position: absolute; bottom: 10px; left: 5px">
+            There are {{ day.events.length }} events on this day
+        </small>
+    
+        </div>
+    </script>
+
    
 </head>
+
+
+
 <body ng-app="app" ng-controller="dataController">
 
     <mwl-calendar
@@ -25,6 +46,7 @@
         on-event-click="eventClicked(calendarEvent)"
         on-event-times-changed="calendarEvent.startsAt = calendarNewEventStart; calendarEvent.endsAt = calendarNewEventEnd"
         cell-is-open="true"
+        custom-template-urls="{calendarMonthCell: 'customMonthCell.html'}"
         cell-modifier="cellModifier(calendarCell)">
     </mwl-calendar>
 
