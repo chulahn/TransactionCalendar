@@ -4559,12 +4559,10 @@
             }
 
             function monthView(event) {
-              return (
-                event.title +
-                " (" +
-                calendarDateFilter(event.startsAt, "time", true) +
-                ")"
-              );
+              var day = new Date(event.startsAt);
+              var timestamp =
+                "[" + day.getHours() + ":" + day.getMinutes() + "] ";
+              return timestamp + event.title + " $" + event.price;
             }
 
             function monthViewTooltip(event) {
